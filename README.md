@@ -23,27 +23,7 @@ A Flutter application designed to replicate the internship search page of the In
    git clone https://github.com/your-username/Internshala-Internship-Search-App.git
    cd YourRepository
 
-## Project Structure
 
-lib/
-├── main.dart
-├── models/
-│   ├── filters_model.dart
-│   └── internship_model.dart
-├── services/
-│   ├── api_service.dart
-│   └── internship_service.dart
-├── controllers/
-│   ├── filters_controller.dart
-│   └── internship_controller.dart
-├── views/
-│   ├── search_page.dart
-│   ├── internship_list.dart
-│   ├── filters_screen.dart
-│   ├── splash_screen.dart
-│   
-└── widgets/
-│       └── internship_card.dart
 
 
 
