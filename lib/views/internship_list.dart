@@ -5,10 +5,11 @@ import 'package:internshala/views/widgets/internship_card.dart';
 
 class InternshipList extends StatelessWidget {
   final String searchQuery;
-
-  InternshipList({required this.searchQuery});
+  final Map<String, String> filters;
 
   final InternshipController internshipController = Get.find();
+
+  InternshipList({required this.searchQuery, required this.filters});
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +18,28 @@ class InternshipList extends StatelessWidget {
         return Center(child: CircularProgressIndicator());
       }
 
-      final filteredInternships = internshipController.internships.where((internship) {
-        final lowerCaseQuery = searchQuery.toLowerCase();
-        return internship.title.toLowerCase().contains(lowerCaseQuery) ||
-            internship.company.toLowerCase().contains(lowerCaseQuery) ||
-            internship.locations.any((location) => location.toLowerCase().contains(lowerCaseQuery));
+      // Apply filters and search query
+      var filteredInternships = internshipController.internships.where((internship) {
+        final matchesSearchQuery = searchQuery.isEmpty ||
+            internship.title.toLowerCase().contains(searchQuery.toLowerCase());
+        final matchesProfile = filters['profile'] == null ||
+            filters['profile']!.isEmpty ||
+            internship.title.toLowerCase().contains(filters['profile']!.toLowerCase());
+        final matchesCity = filters['city'] == null ||
+            filters['city']!.isEmpty ||
+            internship.locations.any((location) =>
+                location.toLowerCase().contains(filters['city']!.toLowerCase()));
+        final matchesDuration = filters['duration'] == null ||
+            filters['duration']!.isEmpty ||
+            internship.duration.contains(filters['duration']!);
+
+        return matchesSearchQuery && matchesProfile && matchesCity && matchesDuration;
       }).toList();
 
       return ListView.builder(
         itemCount: filteredInternships.length,
         itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.symmetric(vertical: 2.0), // Very little space between cards
-            child: InternshipCard(internship: filteredInternships[index]),
-          );
+          return InternshipCard(internship: filteredInternships[index]);
         },
       );
     });

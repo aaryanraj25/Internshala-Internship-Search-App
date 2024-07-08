@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'views/splash_screen.dart';
-import 'controllers/internship_controller.dart';
-import 'controllers/filters_controller.dart';
+import 'package:internshala/controllers/internship_controller.dart';
+import 'package:internshala/controllers/filters_controller.dart';
+import 'package:internshala/views/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
         Get.put(FiltersController());
       }),
       home: SplashScreen(),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white, // Set the scaffold background color to white
+      ),
     );
   }
 }

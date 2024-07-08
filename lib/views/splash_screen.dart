@@ -11,16 +11,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 2), () {
       Get.off(SearchPage());
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Splash Screen', style: TextStyle(fontSize: 24)),
+        child: Image.asset(
+          'assets/splash_screen.gif',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
       ),
     );
   }

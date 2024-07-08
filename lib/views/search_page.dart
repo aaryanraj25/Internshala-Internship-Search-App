@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:internshala/controllers/filters_controller.dart';
 import 'package:internshala/views/internship_list.dart';
+import 'package:internshala/views/filters_screen.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -11,6 +14,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   int _selectedIndex = 1; // Default to "Internships" tab
   String _searchQuery = '';
+  Map<String, String> _filters = {};
 
   void _onItemTapped(int index) {
     setState(() {
@@ -19,6 +23,12 @@ class _SearchPageState extends State<SearchPage> {
     // Navigate to the corresponding page
     // Example:
     // if (index == 0) Navigator.push(...); // Home
+  }
+
+  void _applyFilters(Map<String, String> filters) {
+    setState(() {
+      _filters = filters;
+    });
   }
 
   @override
@@ -42,8 +52,11 @@ class _SearchPageState extends State<SearchPage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
             child: IconButton(
-              onPressed: () {
-                // Navigate to filter screen
+              onPressed: () async {
+                final filters = await Get.to(() => FiltersScreen());
+                if (filters != null) {
+                  _applyFilters(filters);
+                }
               },
               icon: Icon(Icons.filter_alt_outlined, color: Colors.blue, size: 24.0), // Smaller icon
             ),
@@ -87,7 +100,10 @@ class _SearchPageState extends State<SearchPage> {
               height: 2.0, // Grey padding
             ),
             Expanded(
-              child: InternshipList(searchQuery: _searchQuery),
+              child: InternshipList(
+                searchQuery: _searchQuery,
+                filters: _filters,
+              ),
             ),
           ],
         ),

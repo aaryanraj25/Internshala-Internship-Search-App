@@ -1,26 +1,37 @@
 import 'package:get/get.dart';
-import 'package:internshala/models/filters_model.dart';
 
 class FiltersController extends GetxController {
-  var selectedProfile = ''.obs;
-  var selectedCity = ''.obs;
-  var selectedDuration = ''.obs;
+  var profiles = <String>[].obs;
+  var cities = <String>[].obs;
+  var duration = ''.obs;
 
-  void setProfile(String profile) {
-    selectedProfile.value = profile;
+  void addProfile(String profile) {
+    if (profile.isNotEmpty && !profiles.contains(profile)) {
+      profiles.add(profile);
+    }
   }
 
-  void setCity(String city) {
-    selectedCity.value = city;
+  void removeProfile(String profile) {
+    profiles.remove(profile);
   }
 
-  void setDuration(String duration) {
-    selectedDuration.value = duration;
+  void addCity(String city) {
+    if (city.isNotEmpty && !cities.contains(city)) {
+      cities.add(city);
+    }
   }
 
-  Filters get filters => Filters(
-        profile: selectedProfile.value,
-        city: selectedCity.value,
-        duration: selectedDuration.value,
-      );
+  void removeCity(String city) {
+    cities.remove(city);
+  }
+
+  void setDuration(String newDuration) {
+    duration.value = newDuration;
+  }
+
+  void clearFilters() {
+    profiles.clear();
+    cities.clear();
+    duration.value = '';
+  }
 }
