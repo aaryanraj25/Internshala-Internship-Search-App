@@ -1,16 +1,50 @@
-# internshala
+# Internshala Search Page App
 
-A new Flutter project.
+A Flutter application designed to replicate the internship search page of the Internshala Android App. The app fetches data from an API and displays a list of internships with filter options.
+
+## Features
+
+- Splash Screen
+- Search bar for internships
+- Filter internships based on profile, city, and duration
+- Display a list of internships with details like title, company, location, start date, duration, stipend, and labels
+- Custom bottom navigation bar for navigation
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) installed on your machine
+- [Android Studio](https://developer.android.com/studio) or [VS Code](https://code.visualstudio.com/) with Flutter plugin
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Clone the repository:**
+   git clone https://github.com/your-username/Internshala-Internship-Search-App.git
+   cd YourRepository
+
+## Project Structure
+
+lib/
+├── main.dart
+├── models/
+│   ├── filters_model.dart
+│   └── internship_model.dart
+├── services/
+│   ├── api_service.dart
+│   └── internship_service.dart
+├── controllers/
+│   ├── filters_controller.dart
+│   └── internship_controller.dart
+├── views/
+│   ├── search_page.dart
+│   ├── internship_list.dart
+│   ├── filters_screen.dart
+│   ├── splash_screen.dart
+│   
+└── widgets/
+│       └── internship_card.dart
+
+
+
+
