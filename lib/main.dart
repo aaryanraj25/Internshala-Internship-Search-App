@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'views/splash_screen.dart';
+import 'controllers/internship_controller.dart';
+import 'controllers/filters_controller.dart';
 
 void main() {
   runApp(MyApp());
