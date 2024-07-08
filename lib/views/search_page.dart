@@ -100,11 +100,15 @@ class _SearchPageState extends State<SearchPage> {
               height: 2.0, // Grey padding
             ),
             Expanded(
-              child: InternshipList(
-                searchQuery: _searchQuery,
-                filters: _filters,
+            
+                child: Container(
+                  color: Colors.grey[200], // White tile
+                  child: InternshipList(
+                    searchQuery: _searchQuery,
+                    filters: _filters,
+                  ),
+                ),
               ),
-            ),
           ],
         ),
       ),
